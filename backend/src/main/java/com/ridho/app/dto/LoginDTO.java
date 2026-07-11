@@ -1,0 +1,15 @@
+package com.ridho.app.dto;
+
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class LoginDTO {
+    @NotBlank(message = "Username tidak boleh kosong")
+    private String username;
+
+    @NotBlank(message = "Password tidak boleh kosong")
+    private String password;
+}
