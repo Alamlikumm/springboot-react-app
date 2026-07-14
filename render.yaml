@@ -11,9 +11,9 @@ services:
       # Secara default kita siapkan variabel kosong, 
       # Nanti di Dashboard Render, Anda tinggal isi dengan URL Database dari Supabase / Aiven
       - key: SPRING_DATASOURCE_URL
-        value: "jdbc:postgresql://URL_DATABASE_ANDA_DISINI?sslmode=require"
+        value: "jdbc:postgresql://pg-c68fd65-darussalamridho894.h.aivencloud.com:12734/defaultdb?sslmode=require"
       - key: SPRING_DATASOURCE_USERNAME
-        value: "db_user_anda"
+        value: "avnadmin"
       - key: SPRING_DATASOURCE_PASSWORD
         value: "db_password_anda"
       - key: SPRING_JPA_HIBERNATE_DDL_AUTO
