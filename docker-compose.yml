@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # ==========================================
+  # Database MySQL
+  # ==========================================
+  db:
+    image: mysql:8.0
+    container_name: product-manager-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: product_manager
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: dbpassword
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306" # Hanya untuk keperluan debug lokal, bisa dihapus di production
+
+  # ==========================================
+  # Aplikasi (Spring Boot + React)
+  # ==========================================
+  app:
+    build: .
+    container_name: product-manager-app
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/product_manager?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=dbuser
+      - SPRING_DATASOURCE_PASSWORD=dbpassword
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SERVER_PORT=8080
+    volumes:
+      - app_uploads:/tmp/uploads # Untuk menyimpan file upload agar tidak hilang saat container restart
+
+volumes:
+  mysql_data:
+  app_uploads:
