@@ -25,7 +25,7 @@ const Login = () => {
                 const { token, ...userData } = response.data;
                 login(token, userData);
                 toast.success('Login berhasil!');
-                navigate('/products');
+                navigate('/dashboard');
             }
         } catch (error) {
             console.error('Login error', error);
@@ -40,7 +40,7 @@ const Login = () => {
         <div className="auth-container">
             <div className="auth-card">
                 <div className="auth-header">
-                    <span className="brand-icon">📦</span>
+                    <div className="brand-icon">📦</div>
                     <h2>Product Manager</h2>
                     <p>Silakan login ke akun Anda</p>
                 </div>

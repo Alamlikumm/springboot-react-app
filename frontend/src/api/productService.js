@@ -31,11 +31,23 @@ const productService = {
         return response.data;
     },
 
-    // Search products (paginated)
     search: async (keyword, page = 0, size = 10, sort = 'id,desc') => {
         const response = await api.get(`/products/search?keyword=${keyword}&page=${page}&size=${size}&sort=${sort}`);
         return response.data;
     },
+
+    // Bulk delete products
+    deleteBulk: async (ids) => {
+        const response = await api.delete('/products/bulk', { data: ids });
+        return response.data;
+    },
+
+    // Export products to CSV
+    exportCSV: async () => {
+        // Need to set responseType to blob to handle file download properly
+        const response = await api.get('/products/export', { responseType: 'blob' });
+        return response.data;
+    }
 };
 
 export default productService;

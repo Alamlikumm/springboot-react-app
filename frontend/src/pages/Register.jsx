@@ -20,7 +20,7 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         if (formData.password !== formData.confirmPassword) {
             toast.error('Password dan konfirmasi password tidak cocok!');
             return;
@@ -48,7 +48,7 @@ const Register = () => {
         <div className="auth-container">
             <div className="auth-card">
                 <div className="auth-header">
-                    <span className="brand-icon">📦</span>
+                    <div className="brand-icon">📦</div>
                     <h2>Product Manager</h2>
                     <p>Buat akun baru</p>
                 </div>
@@ -91,7 +91,7 @@ const Register = () => {
                             minLength="6"
                         />
                     </div>
-                    
+
                     <div className="form-group">
                         <label>Konfirmasi Password <span className="required">*</span></label>
                         <input
