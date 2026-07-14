@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: product-manager-app
+    env: docker
+    region: singapore
+    plan: free
+    branch: master
+    dockerfilePath: ./Dockerfile
+    envVars:
+      # Database Configuration
+      # Secara default kita siapkan variabel kosong, 
+      # Nanti di Dashboard Render, Anda tinggal isi dengan URL Database dari Supabase / Aiven
+      - key: SPRING_DATASOURCE_URL
+        value: "jdbc:postgresql://URL_DATABASE_ANDA_DISINI?sslmode=require"
+      - key: SPRING_DATASOURCE_USERNAME
+        value: "db_user_anda"
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: "db_password_anda"
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: "update"
+      
+      # Agar Spring otomatis menyesuaikan Dialect
+      - key: SPRING_JPA_DATABASE_PLATFORM
+        value: "org.hibernate.dialect.PostgreSQLDialect"

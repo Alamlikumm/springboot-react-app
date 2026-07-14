@@ -45,5 +45,5 @@ COPY --from=build-backend /app/backend/target/*.jar app.jar
 # Buat folder untuk penyimpanan file lokal (opsional jika menggunakan local storage)
 RUN mkdir -p /tmp/uploads
 
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","/app/app.jar"]
+EXPOSE 8080 10000
+ENTRYPOINT ["sh", "-c", "java -Dserver.port=${PORT:-8080} -jar /app/app.jar"]
